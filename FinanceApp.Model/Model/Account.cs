@@ -5,9 +5,6 @@ public abstract class Account
     //Private balance variable. Can't be set from outside the class
     private decimal _balance;
 
-    // Private transaction collection
-    private IList<Transaction> _transacions;
-
     //Public property representing Account name
     public string Name { get; private set; }
 
@@ -15,7 +12,6 @@ public abstract class Account
     {
         Name = name;
         _balance = 0m;
-        _transacions = new List<Transaction>();
     }
 
     /*
@@ -27,12 +23,11 @@ public abstract class Account
     }
 
     /*
-    * Get a collection of transactions that were processed for the account
-    * virtual: can be overriden in derived classes to provide specific implementations related to specific accounts
+    * Sets the current balance of the account
     */
-
-    public virtual IList<Transaction> GetAllTransactions()
+    public void SetCurrentBalance(decimal balance)
     {
-        return _transacions;
+        _balance = balance < 0 ? 0 : balance;
     }
+
 }
